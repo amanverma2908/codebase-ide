@@ -18,7 +18,7 @@ RUN mkdir -p /piston/packages /piston/jobs && \
     (cd /piston-src/api && node src/index.js &) && \
     sleep 15 && \
     cd /piston-src/cli && \
-    node index.js ppman install python javascript typescript cpp c csharp java go rust ruby php bash && \
+    node index.js ppman install python javascript typescript java php bash && \
     cp -r /piston/packages /piston-packages-backup
 
 # 5. Set working directory to the API
