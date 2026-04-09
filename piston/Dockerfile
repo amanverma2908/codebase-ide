@@ -1,10 +1,13 @@
 FROM ghcr.io/engineer-man/piston:latest
 
-# Essential for cloud hosting compatibility
+# Disable sandbox for compatibility with Render
 ENV PISTON_DISABLE_SANDBOX=true
 
-# Use port 2000 for Piston
+# Explicitly create the directories Piston expects to exist
+RUN mkdir -p /piston /piston/packages /piston/jobs
+
+# Render uses port 2000 for Piston by default
 EXPOSE 2000
 
-# Start the API without pre-installing (we will do it via API later)
-CMD ["node", "src/index.js"]
+# Notice we removed the CMD ["node", "src/index.js"] line here.
+# We are letting the official Piston image use its own default startup command.
